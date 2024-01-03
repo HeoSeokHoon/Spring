@@ -26,6 +26,7 @@ public class ProductDAO {
 		List<ProductDTO> ar = new ArrayList<ProductDTO>();
 		
 		while(rs.next()) {
+			pD = new ProductDTO();
 			pD.setProductNum(rs.getLong("productNum"));
 			pD.setProductName(rs.getString("productName"));
 			pD.setProductContents(rs.getString("productContents"));
