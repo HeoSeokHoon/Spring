@@ -30,7 +30,7 @@ public class ProductController {
 	
 	//detail
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView productDetail(ProductDTO pD, ModelAndView mv) {
+	public ModelAndView productDetail(ProductDTO pD, ModelAndView mv) throws Exception {
 		pD = pDao.productDetail(pD);
 		
 		mv.addObject("detail", pD);
