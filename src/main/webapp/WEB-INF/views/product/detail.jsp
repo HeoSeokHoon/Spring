@@ -12,14 +12,14 @@
 	<c:import url="../temps/header.jsp"></c:import>
 	<section class="container-fluid">
 		<div>
-			<c:if test="${not empty dto}">
-				<h3>${dto.productNum}</h3>
-				<h3>${dto.productName}</h3>
-				<h3>${dto.productContents}</h3>
-				<h3>${dto.productRate}</h3>
-				<h3>${dto.productJumsu}</h3>
+			<c:if test="${not empty detail}">
+				<h3>${detail.productNum}</h3>
+				<h3>${detail.productName}</h3>
+				<h3>${detail.productContents}</h3>
+				<h3>${detail.productRate}</h3>
+				<h3>${detail.productJumsu}</h3>
 			</c:if>
-			<c:if test="${empty dto}">
+			<c:if test="${empty detail}">
 				<h3>없는 번호 입니다</h3>
 			</c:if>
 		</div>

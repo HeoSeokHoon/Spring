@@ -47,18 +47,17 @@ public class ProductDAO {
 		ps.setLong(1, pD.getProductNum());
 		
 		ResultSet rs = ps.executeQuery();
-		
-		ProductDTO resultDTO = null;
-		
+		ProductDTO pDto = null;
 		if(rs.next()) {
-			resultDTO.setProductNum(rs.getLong("productnum"));
-			resultDTO.setProductContents(rs.getString("productContents"));
-			resultDTO.setProductName(rs.getString("productName"));
-			resultDTO.setProductRate(rs.getDouble("productRate"));
-			resultDTO.setProductJumsu(rs.getDouble("productJumsu"));
+			pDto = new ProductDTO();
+			pDto.setProductNum(rs.getLong("productNum"));
+			pDto.setProductContents(rs.getString("productContents"));
+			pDto.setProductName(rs.getString("productName"));
+			pDto.setProductRate(rs.getDouble("productRate"));
+			pDto.setProductJumsu(rs.getDouble("productJumsu"));
 		}
 		
-		return resultDTO;
+		return pDto;
 	}
 	
 	public int productAdd(ProductDTO pD) {

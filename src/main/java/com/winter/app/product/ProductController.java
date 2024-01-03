@@ -31,8 +31,11 @@ public class ProductController {
 	//detail
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public ModelAndView productDetail(ProductDTO pD, ModelAndView mv) throws Exception {
+		
+		System.out.println(pD.getProductNum());
 		pD = pDao.productDetail(pD);
 		
+		System.out.println(pD.getProductName());
 		mv.addObject("detail", pD);
 		mv.setViewName("product/detail");
 
