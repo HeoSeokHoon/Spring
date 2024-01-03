@@ -19,7 +19,8 @@
 				<h3>${dto.productRate}</h3>
 				<h3>${dto.productJumsu}</h3>
 			</c:if>
-			<c:if test="">
+			<c:if test="${empty dto}">
+				<h3>없는 번호 입니다</h3>
 			</c:if>
 		</div>
 	</section>
