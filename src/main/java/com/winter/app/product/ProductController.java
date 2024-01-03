@@ -1,4 +1,4 @@
-package com.winter.product;
+package com.winter.app.product;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

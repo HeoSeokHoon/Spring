@@ -1,4 +1,4 @@
-package com.winter.product;
+package com.winter.app.product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

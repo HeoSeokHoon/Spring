@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.winter.product.ProductDAO;
-import com.winter.product.ProductDTO;
+import com.winter.app.product.ProductDAO;
+import com.winter.app.product.ProductDTO;
 
 public class MyTest {
 
