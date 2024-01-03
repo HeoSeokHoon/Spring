@@ -1,4 +1,4 @@
-package com.winter.product;
+package com.winter.app.product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,6 +26,7 @@ public class ProductDAO {
 		List<ProductDTO> ar = new ArrayList<ProductDTO>();
 		
 		while(rs.next()) {
+			pD = new ProductDTO();
 			pD.setProductNum(rs.getLong("productNum"));
 			pD.setProductName(rs.getString("productName"));
 			pD.setProductContents(rs.getString("productContents"));
