@@ -39,11 +39,26 @@ public class ProductDAO {
 		return ar;
 	}
 	
-	public ProductDTO productDetail(ProductDTO pD) {
+	public ProductDTO productDetail(ProductDTO pD) throws Exception {
 		//URL: /product/detail, Method: GET, Parameter: productNum 
+		Connection con = DBConnector.getConnector();
+		String sql = "SELECT * FROM PRODUCT WHERE PRODUCTNUM = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setLong(1, pD.getProductNum());
 		
+		ResultSet rs = ps.executeQuery();
 		
-		return null;
+		ProductDTO resultDTO = null;
+		
+		if(rs.next()) {
+			resultDTO.setProductNum(rs.getLong("productnum"));
+			resultDTO.setProductContents(rs.getString("productContents"));
+			resultDTO.setProductName(rs.getString("productName"));
+			resultDTO.setProductRate(rs.getDouble("productRate"));
+			resultDTO.setProductJumsu(rs.getDouble("productJumsu"));
+		}
+		
+		return resultDTO;
 	}
 	
 	public int productAdd(ProductDTO pD) {
