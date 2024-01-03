@@ -56,8 +56,7 @@ public class ProductDAO {
 			resultDTO.setProductRate(rs.getDouble("productRate"));
 			resultDTO.setProductJumsu(rs.getDouble("productJumsu"));
 		}
-		System.out.println(resultDTO);
-		DBConnector.disConnect(rs, ps, con);
+		
 		return resultDTO;
 	}
 	
