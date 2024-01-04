@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.winter.app.util.DBConnector;
 
+@Repository // DAO 객체를 만들어주세요 스프링아
 public class RegionDAO {
 	
 	//Update

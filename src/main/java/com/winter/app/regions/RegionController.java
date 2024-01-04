@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -16,11 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/regions/*")
 public class RegionController {
 	
+	@Autowired
 	private RegionDAO rDao;
 	
-	public RegionController() {
-		this.rDao = new RegionDAO();
-	}
+//	public RegionController() {
+//		this.rDao = new RegionDAO();
+//	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String add(RegionDTO rD, Model model) throws Exception {
