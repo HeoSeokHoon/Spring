@@ -6,12 +6,18 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.winter.app.util.DBConnector;
 
 @Repository // DAO 객체를 만들어주세요 스프링아
 public class RegionDAO {
+	
+	@Autowired
+	private SqlSession sqlSession;
+	private final String namespace="com.winter.app.regions.RegionDAO.";
 	
 	//Update
 	public int update(RegionDTO rD) throws Exception {
@@ -45,42 +51,10 @@ public class RegionDAO {
 	}
 	
 	public RegionDTO getDetail(RegionDTO rD)throws Exception {
-		Connection con = DBConnector.getConnector();
-		
-		String sql = "SELECT * FROM REGIONS WHERE REGION_ID=?";
-		
-		PreparedStatement ps = con.prepareStatement(sql);
-		
-		//물음표 값 설정
-		ps.setInt(1, rD.getRegion_id());
-		
-		ResultSet rs = ps.executeQuery();
-		RegionDTO resultDTO = null; 
-		if(rs.next()) {
-			resultDTO = new RegionDTO();
-			resultDTO.setRegion_id(rs.getInt("REGION_ID"));
-			resultDTO.setRegion_name(rs.getString("REGION_NAME"));
-		}
-		return resultDTO;
+		return sqlSession.selectOne(namespace+"getDetail", rD);
 	}
 	
 	public List<RegionDTO> getList() throws Exception {
-			
-			Connection con = DBConnector.getConnector();
-			String sql = "SELECT * FROM REGIONS";
-			PreparedStatement ps = con.prepareStatement(sql);
-			
-			ResultSet rs = ps.executeQuery();
-			List<RegionDTO> ar = new ArrayList<RegionDTO>();
-			
-			while(rs.next()) {
-				RegionDTO rD = new RegionDTO();
-				rD.setRegion_id(rs.getInt("REGION_ID"));
-				rD.setRegion_name(rs.getString("REGION_NAME"));
-				ar.add(rD);
-			}			
-			
-			DBConnector.disConnect(rs, ps, con);
-			return ar;
+		return sqlSession.selectList(namespace+"getList");
 	}
 }
