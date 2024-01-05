@@ -13,7 +13,7 @@ import com.winter.app.regions.RegionDTO;
 
 @Controller
 @RequestMapping(value = "/departments/*")
-public class DepartmentsController {
+public class DepartmentController {
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public String detail(HttpServletRequest request) throws Exception {
