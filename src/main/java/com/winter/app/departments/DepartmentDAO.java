@@ -21,40 +21,19 @@ public class DepartmentDAO {
 	private SqlSession sqlSession;
 	private String namespace = "com.winter.app.departments.DepartmentDAO.";
 	
+	//delete
+		public int delete(DepartmentDTO dDto) throws Exception {
+			return sqlSession.delete(namespace+"delete", dDto);
+		}
+	
 	//Update
-		public int update(DepartmentDTO dD) throws Exception {
-			Connection con = DBConnector.getConnector();
-			String sql = "UPDATE DEPARTMENTS SET DEPARTMENT_NAME =?, MANAGER_ID =?, LOCATION_ID =? WHERE DEPARTMENT_ID=?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, dD.getDepartment_name());
-			ps.setInt(2, dD.getManager_id());
-			ps.setInt(3, dD.getLocation_id());
-			ps.setInt(4, dD.getDepartment_id());
-			
-			
-			int result=ps.executeUpdate();
-			
-			DBConnector.disConnect(ps, con);
-			return result; 
+		public int update(DepartmentDTO dDto) throws Exception {
+			return sqlSession.update(namespace+"update", dDto); 
 		}
 	
 	//Insert
 		public int add(DepartmentDTO dDto) throws Exception{
-			Connection con = DBConnector.getConnector();
-			
-			String sql = "INSERT INTO DEPARTMENTS VALUES (?,?,?,?)";
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-			
-			ps.setInt(1, dDto.getDepartment_id());
-			ps.setString(2, dDto.getDepartment_name());
-			ps.setInt(3, dDto.getManager_id());
-			ps.setInt(4, dDto.getLocation_id());
-			
-			int result = ps.executeUpdate();
-			
-			DBConnector.disConnect(ps, con);
-			return result;
+			return sqlSession.insert(namespace+"add", dDto);
 		}
 	
 	public DepartmentDTO getDetail(DepartmentDTO dDto) throws Exception {

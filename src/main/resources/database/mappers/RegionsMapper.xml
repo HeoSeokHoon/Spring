@@ -5,14 +5,32 @@
   <!-- mapper namespace(중복불가)는 비우면 에러 -->
   <!-- 해당 mapper를 사용할 DAO의 풀패키지명으로 작성 : 중복방지 -->
   <mapper namespace="com.winter.app.regions.RegionDAO">
+  		
+ 	<!-- Config 파일에 Alias 등록 후 Type을 줄여서 가능 com.winter.app.regions.RegionDTO > RegionDTO -->
+  	
+  	<!-- Delete -->
+  	<delete id="delete" parameterType="RegionDTO">
+  		DELETE REGIONS WHERE REGION_ID=#{region_id}
+  	</delete>
+  	
+  	<!-- Update -->
+  	<update id="update" parameterType="RegionDTO">
+  		UPDATE REGIONS SET REGION_NAME=#{region_name} WHERE REGION_ID=#{region_id}
+  	</update>
+  	
+  	<!-- Insert -->
+  	<insert id="add" parameterType="RegionDTO">
+  		INSERT INTO REGIONS VALUES (REGIONS_SEQ.NEXTVAL,#{region_name})
+  	</insert>
+  	
   	<!-- detail -->
   	<!-- id값은 DAO의 메서드명 -->
-  	<select id="getDetail" resultType="com.winter.app.regions.RegionDTO" parameterType="com.winter.app.regions.RegionDTO">
+  	<select id="getDetail" resultType="RegionDTO" parameterType="RegionDTO">
   		SELECT * FROM REGIONS WHERE REGION_ID=#{region_id}
   	</select>
   	
   	<!-- list -->
-  	<select id="getList" resultType="com.winter.app.regions.RegionDTO">
+  	<select id="getList" resultType="RegionDTO">
   		SELECT * FROM REGIONS
   	</select>
   </mapper>

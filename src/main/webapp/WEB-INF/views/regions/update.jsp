@@ -14,28 +14,21 @@
 <body>
 	<c:import url="../temps/header.jsp"></c:import>
     
-    <section class="container-fluid">
-    	<div>
-    		<c:if test="${not empty dto}">
-    			<h3>${dto.region_id}</h3>
-    			<div>${dto.region_name}</div>
-				<button id="up" data-region-id="${dto.region_id}">Update</button>
-    			<button id="del">Delete</button>
-    			<form id="frm" action="./delete" method="post">
-    				<input type="hiden" name="region_id" value="${dto.region_id}">
-    			</form>
-    		</c:if>
-    		
-    		<c:if test="${empty dto}">
-    			<h3>없는 번호 입니다</h3>
-    		</c:if>
-    		
+    <section class="container-fluid" id="contents">
+    	<div class="row mt-4">
+			<form action="update" method="post">
+			  <input type="hidden" name="region_id" value="${dto.region_id}">
+			  <div class="mb-3">
+			    <label for="regionName" class="form-label">Region_Name</label>
+			    <input type="text" class="form-control" value="${dto.region_name}" id="regionName" name="region_name">
+			  </div>
+			  <button type="submit" class="btn btn-primary">Update</button>
+			</form>
     	</div>
     </section>
 
 	
 <c:import url="../temps/bootstrap_js.jsp"></c:import>
-<script src="../resources/js/regionDetail.js"></script>
 </body>
 
 </html>

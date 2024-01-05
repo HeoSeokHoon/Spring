@@ -17,11 +17,11 @@
     <section class="container-fluid" id="contents">
     	<div class="row mt-4">
 			<form action="add" method="post">
-			  <div class="mb-3">
+			  <!-- <div class="mb-3">
 			    <label for="regionId" class="form-label">Region_ID</label>
 			    <input type="text" class="form-control" id="regionId" name="region_id" aria-describedby="idHelp">
 			    <div id="idHelp" class="form-text"> 중복되지않게 유의하세요 </div>
-			  </div>
+			  </div> -->
 			  <div class="mb-3">
 			    <label for="regionName" class="form-label">Region_Name</label>
 			    <input type="text" class="form-control" id="regionName" name="region_name">
