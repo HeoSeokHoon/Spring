@@ -6,37 +6,22 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.winter.app.util.DBConnector;
 
+@Repository
 public class ProductDAO {
 	
-	private ProductDTO pD = null;
-	
-	public ProductDAO() {
-		this.pD = new ProductDTO();
-	}
+	@Autowired
+	private SqlSession sqlSession;
+	public final String namespace="com.winter.app.product.ProductDAO.";
 	
 	public List<ProductDTO> productList() throws Exception {
 		//URL: /product/list, Method: GET, Parameter: X\
-		Connection con = DBConnector.getConnector();
-		String sql = "SELECT * FROM PRODUCT";
-		PreparedStatement ps = con.prepareStatement(sql);
-		
-		ResultSet rs = ps.executeQuery();
-		List<ProductDTO> ar = new ArrayList<ProductDTO>();
-		
-		while(rs.next()) {
-			pD = new ProductDTO();
-			pD.setProductNum(rs.getLong("productNum"));
-			pD.setProductName(rs.getString("productName"));
-			pD.setProductContents(rs.getString("productContents"));
-			pD.setProductRate(rs.getDouble("productRate"));
-			pD.setProductJumsu(rs.getDouble("productJumsu"));
-			ar.add(pD);
-		}
-		
-		DBConnector.disConnect(rs, ps, con);
-		return ar;
+		return sqlSession.selectList(namespace+"productList");
 	}
 	
 	public ProductDTO productDetail(ProductDTO pD) throws Exception {
