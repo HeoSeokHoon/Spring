@@ -32,6 +32,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<a class="btn btn-secondary" role="button" href="./add">Add</a>
 <c:import url="../temps/bootstrap_js.jsp"></c:import>
 </body>
 </html>

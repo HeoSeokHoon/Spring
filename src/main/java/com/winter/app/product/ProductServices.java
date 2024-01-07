@@ -16,5 +16,16 @@ public class ProductServices {
 		
 		return ar;
 	}
-
+	
+	public ProductDTO productDetail(ProductDTO pD) throws Exception {
+		return this.productDAO.productDetail(pD);
+	}
+	
+	public int productAdd(ProductDTO pD) throws Exception {
+		return this.productDAO.productAdd(pD);
+	}
+	
+	public int productUpdate(ProductDTO pD) throws Exception {
+		return this.productDAO.productUpdate(pD);
+	}
 }
