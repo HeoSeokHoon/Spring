@@ -66,11 +66,25 @@ public class ProductController {
 		return "product/update";
 	}
 	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public ModelAndView productUpdate(ProductDTO pD, ModelAndView mv) throws Exception {
 		int result = productServices.productUpdate(pD);
 		String msg = "수정 실패";
 		if(result>0){
 			msg="수정 성공";
+		}
+		mv.addObject("msg", msg);
+		mv.addObject("path","./list");
+		mv.setViewName("commons/result");
+		
+		return mv;
+	}
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public ModelAndView productDelete(ProductDTO pD, ModelAndView mv) throws Exception {
+		int result = this.productServices.productDelete(pD);
+		String msg = "삭제 실패";
+		if(result>0) {
+			msg = "삭제 성공";
 		}
 		mv.addObject("msg", msg);
 		mv.addObject("path","./list");

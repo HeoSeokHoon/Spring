@@ -23,7 +23,13 @@
   	</insert>
   	
   	<!-- Update -->
-  	<update id="productUpdate">
-	  	UPDATE PRODUCT SET PRODUCTNAME=#{productNmae}, PRODUCTCONTENTS=#{productContents}, PRODUCTRATE=#{productRate}, PRODUCTJUMSU=#{productJumsu} WHERE PRODUCTNUM=#{productNum}
+  	<update id="productUpdate" parameterType="ProductDTO">
+	  	UPDATE PRODUCT SET PRODUCTNAME=#{productName}, PRODUCTCONTENTS=#{productContents}, PRODUCTRATE=#{productRate}, PRODUCTJUMSU=#{productJumsu} WHERE PRODUCTNUM=#{productNum}
   	</update>
+  	
+  	<!-- Delete -->
+  	<delete id="productDelete" parameterType="ProductDTO">
+  		DELETE PRODUCT WHERE PRODUCTNUM=#{productNum}
+  	</delete>
+  	
   </mapper>
