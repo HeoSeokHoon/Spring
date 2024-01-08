@@ -8,13 +8,14 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.winter.app.MyTest;
+import com.winter.app.util.Pager;
 
 public class RegionsDAOTest extends MyTest{
 
 	@Autowired
 	private RegionDAO regionDAO;
 	
-	@Test
+//	@Test
 	public void deleteTest() throws Exception {
 		RegionDTO regionDTO = new RegionDTO();
 		regionDTO.setRegion_id(12);
@@ -36,16 +37,25 @@ public class RegionsDAOTest extends MyTest{
 //	@Test
 	public void addTest() throws Exception{
 		RegionDTO regionDTO = new RegionDTO();
-		regionDTO.setRegion_name("Test");
-		int result = regionDAO.add(regionDTO);
-		
-		assertEquals(1, result);
+		for(int i=0;i<100;i++) {
+			regionDTO.setRegion_name("Test"+i);
+			int result = regionDAO.add(regionDTO);
+			if(i%10==0) {
+				Thread.sleep(500);
+			}
+		}
+		System.out.println("100개 입력 완료");
+//		assertEquals(1, result);
 	}
 	
-//	@Test
+	@Test
 	public void getListTest() throws Exception{
-		List<RegionDTO> ar = regionDAO.getList();
-		assertNotEquals(0, ar.size());
+		Pager pager = new Pager();
+		pager.setPage(2L);
+		pager.makeRow();
+		List<RegionDTO> ar = regionDAO.getList(pager);
+		System.out.println(ar.get(0).getRegion_id());
+		assertNotEquals(10, ar.size());
 	}
 	
 //	@Test

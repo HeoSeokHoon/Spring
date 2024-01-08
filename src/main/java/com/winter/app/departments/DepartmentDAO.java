@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.winter.app.regions.RegionDTO;
-import com.winter.app.util.DBConnector;
 
 @Repository
 public class DepartmentDAO {
