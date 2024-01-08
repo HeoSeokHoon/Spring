@@ -15,9 +15,11 @@ public class ProductDAOTest extends MyTest{
 	@Test
 	public void updateTest() throws Exception {
 		ProductDTO pD = new ProductDTO();
-		long num = 1;
-		pD.setProductNum(num);
+		pD.setProductNum(1L);
 		pD.setProductName("TEST3");
+		pD.setProductContents("1");
+		pD.setProductRate(3.3);
+		pD.setProductJumsu(3.3);
 		int result = productDAO.productUpdate(pD);
 		
 		assertEquals(1, result);
