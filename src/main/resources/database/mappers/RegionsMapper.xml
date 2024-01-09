@@ -8,6 +8,40 @@
   		
  	<!-- Config 파일에 Alias 등록 후 Type을 줄여서 가능 com.winter.app.regions.RegionDTO > RegionDTO -->
   	
+  	<sql id="search3">
+  		WHERE
+  		<choose>
+  			<when test="kind=='kind1">
+  				TITLE LIKE '%'||#{search}||'%'	
+  			</when>
+  			<when test="kind=='kind2'">
+  				CONTENTS LIKE '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  				WRITER LIKE '%'||#{search}||'%'		
+  			</otherwise>
+  		</choose>
+  	</sql>
+  		
+  	<sql id="search2">
+  		<where>
+	  		<if test="kind=='kind1' or kind=='kind4'">
+				TITLE LIKE '%'||#{search}||'%'
+	  		</if>
+	  		<if test="kind=='kind2' or kind=='kind4'">
+	  			OR CONTENTS LIKE '%'||#{search}||'%'
+	  		</if>
+	  		<if test="kind=='kind3' or kind=='kind4'">
+	  			OR WRITER LIKE '%'||#{search}||'%'
+	  		</if>  		
+  		</where>
+  	</sql>
+  	
+  	<sql id="search">
+  		<!-- TITLE, CONTENTS, WRITER 컬럼 있다고 가정하고 -->
+  		WHERE REGION_NAME LIKE '%'||#{search}||'%'
+  	</sql>
+  	
   	<!-- Delete -->
   	<delete id="delete" parameterType="RegionDTO">
   		DELETE REGIONS WHERE REGION_ID=#{region_id}
@@ -30,15 +64,18 @@
   	</select>
   	
   	<!-- getTotal -->
-  	<select id="getTotal" resultType="Long">
+  	<select id="getTotal" resultType="Long" parameterType="Pager">
   		SELECT COUNT(REGION_ID) FROM REGIONS
+  		<include refid="search"></include>
   	</select>
   	
   	<!-- list -->
   	<select id="getList" resultType="RegionDTO" parameterType="Pager">
   		SELECT * FROM 
 			(SELECT ROWNUM R, RG.* FROM 
-				(SELECT * FROM REGIONS ORDER BY REGION_ID DESC)
+				(SELECT * FROM REGIONS
+				<include refid="search"></include>
+				ORDER BY REGION_ID DESC)
 			RG)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>

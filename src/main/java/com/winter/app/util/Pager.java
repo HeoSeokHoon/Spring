@@ -18,10 +18,16 @@ public class Pager {
 	//다음 블럭이 없으면 true;
 	private boolean last;
 
-
+	//검색관련 변수
+	private String search;
+	private String kind;
 	
 
 	
+
+
+
+
 
 	//startRow, lastRow 계산하는 메서드
 	public void makeRow() {
@@ -53,7 +59,7 @@ public class Pager {
 		}
 		
 		//4. 현재 블럭번호로 시작번호와 끝번호 구하기
-		Long lastNum=perBlock*curBlock;;
+		Long lastNum=perBlock*curBlock;
 		Long startNum=lastNum-perBlock+1L;
 		this.setStartNum(startNum);
 		this.setLastNum(lastNum);
@@ -64,7 +70,7 @@ public class Pager {
 		}
 		
 		if(curBlock==totalBlock) {
-			this.setLastNum(totalPage);
+			this.setLastNum(this.getTotalPage());
 			this.setLast(true);
 		}
 	}
@@ -143,6 +149,25 @@ public class Pager {
 
 	public void setLast(boolean last) {
 		this.last = last;
+	}
+	
+	public String getSearch() {
+		if(this.search==null) {
+			this.setSearch("");
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 	
 }
