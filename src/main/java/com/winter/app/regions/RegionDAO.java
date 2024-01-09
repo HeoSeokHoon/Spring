@@ -35,11 +35,18 @@ public class RegionDAO {
 		return sqlSession.insert(namespace+"add", rD);
 	}
 	
+	//Detail
 	public RegionDTO getDetail(RegionDTO rD)throws Exception {
 		return sqlSession.selectOne(namespace+"getDetail", rD);
 	}
 	
+	//List
 	public List<RegionDTO> getList(Pager pager) throws Exception {
 		return sqlSession.selectList(namespace+"getList", pager);
+	}
+	
+	//Total
+	public Long getTotal() throws Exception {
+		return sqlSession.selectOne(namespace+"getTotal");
 	}
 }
