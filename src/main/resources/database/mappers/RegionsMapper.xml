@@ -24,9 +24,10 @@
   	</sql>
   		
   	<sql id="search2">
+  		<bind name="p" value="'%'+_parameter.getSearch+'%'"></bind>
   		<where>
 	  		<if test="kind=='kind1' or kind=='kind4'">
-				TITLE LIKE '%'||#{search}||'%'
+				TITLE LIKE #{p}
 	  		</if>
 	  		<if test="kind=='kind2' or kind=='kind4'">
 	  			OR CONTENTS LIKE '%'||#{search}||'%'
@@ -52,9 +53,16 @@
   		UPDATE REGIONS SET REGION_NAME=#{region_name} WHERE REGION_ID=#{region_id}
   	</update>
   	
+  	<insert id="addFile" parameterType="RegionFileDTO">
+  		INSERT INTO REGIONFILES VALUES (REGIONFILES_SEQ.NEXTVAL, #{region_id}, #{fileName}, #{oriName})
+  	</insert>
+  	
   	<!-- Insert -->
   	<insert id="add" parameterType="RegionDTO">
-  		INSERT INTO REGIONS VALUES (REGIONS_SEQ.NEXTVAL,#{region_name})
+  		<selectKey keyProperty="region_id" order="BEFORE" resultType="Long">
+  			SELECT REGIONS_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO REGIONS VALUES (#{region_id},#{region_name})
   	</insert>
   	
   	<!-- detail -->

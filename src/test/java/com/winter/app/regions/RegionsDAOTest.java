@@ -18,7 +18,7 @@ public class RegionsDAOTest extends MyTest{
 //	@Test
 	public void deleteTest() throws Exception {
 		RegionDTO regionDTO = new RegionDTO();
-		regionDTO.setRegion_id(12);
+		regionDTO.setRegion_id(12L);
 		int result = regionDAO.delete(regionDTO);
 		
 		assertEquals(1, result);
@@ -27,7 +27,7 @@ public class RegionsDAOTest extends MyTest{
 //	@Test
 	public void updateTest() throws Exception{
 		RegionDTO regionDTO = new RegionDTO();
-		regionDTO.setRegion_id(12);
+		regionDTO.setRegion_id(12L);
 		regionDTO.setRegion_name("TestTest");
 		int result = regionDAO.update(regionDTO);
 		
@@ -61,7 +61,7 @@ public class RegionsDAOTest extends MyTest{
 //	@Test
 	public void getDetailTest() throws Exception{
 		RegionDTO regionDTO = new RegionDTO();
-		regionDTO.setRegion_id(1);
+		regionDTO.setRegion_id(1L);
 		regionDTO = regionDAO.getDetail(regionDTO);
 		
 		assertNotNull(regionDTO);

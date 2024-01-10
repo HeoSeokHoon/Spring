@@ -18,19 +18,19 @@
 		
 		<div>
 			<form class="row g-3">
-				<div class="col-auto">
-					<select class="form-select" name="kind" aria-label="Default select example">
+				<div class="col-sm-10">
+					<select class="form-select form-select-sm" name="kind">
 					  <option value="kind1">제목</option>
 					  <option value="kind2">내용</option>
 					  <option value="kind3">작성자</option>
 					  <option value="kind4">제목&내용&작성자</option>
 					</select>
 				</div>
-				<div class="col-auto">
+				<div class="col-sm-10">
 				  <label for="search" class="visually-hidden">Search</label>
-				  <input type="text" name="search" class="form-control" id="search" value="${pager.search}">
+				  <input type="text" name="search" class="form-control form-control-sm" id="search" value="${pager.search}">
 				</div>
-				<div class="col-auto">
+				<div class="col-sm-10">
 				  <button type="submit" class="btn btn-primary mb-3">Search</button>
 				</div>
 			</form>
