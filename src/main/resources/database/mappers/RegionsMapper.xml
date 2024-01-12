@@ -67,8 +67,36 @@
   	
   	<!-- detail -->
   	<!-- id값은 DAO의 메서드명 -->
-  	<select id="getDetail" resultType="RegionDTO" parameterType="RegionDTO">
-  		SELECT * FROM REGIONS WHERE REGION_ID=#{region_id}
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="RegionDTO">
+  		SELECT R.*, RF.* FROM REGIONS R
+  		LEFT OUTER JOIN REGIONFILES RF 
+  		ON R.REGION_ID = RF.REGION_ID
+		WHERE R.REGION_ID=#{region_id}
+  	</select>
+  	
+  	<resultMap type="RegionDTO" id="getDetailResult">
+  		<!-- PK -->
+  		<id column="REGION_ID" property="region_id"/>
+  		<!-- PK를 제외한 나머지 -->
+  		<result column="REGION_NAME" property="region_name"/>
+  		<!-- 1:1 -->
+  		<!-- <association property="regionFileDTO" javaType="RegionFileDTO">
+	  		<id column="FILENUM" property="fileNum"/>
+	  		<result column="FILENAME" property="fileName"/>
+	  		<result column="ORINAME" property="oriName"/>
+  		</association> -->
+  		<!-- 1:N association 과 collection을 같이 쓸 경우 순서 꼭 지키기 -->
+  		<collection property="regionFileDTOs" javaType="List" ofType="RegionFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+	  		<result column="FILENAME" property="fileName"/>
+	  		<result column="ORINAME" property="oriName"/>
+  		</collection>
+  		
+  	</resultMap>
+  	
+  	<!-- File List 1:N -->
+  	<select id="getListFiles" resultType="RegionFileDTO" parameterType="RegionDTO">
+  		SELECT * FROM REGIONFILES WHERE REGION_ID=#{region_id}
   	</select>
   	
   	<!-- getTotal -->

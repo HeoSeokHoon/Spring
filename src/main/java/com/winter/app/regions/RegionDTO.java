@@ -1,5 +1,7 @@
 package com.winter.app.regions;
 
+import java.util.List;
+
 public class RegionDTO {
 	// DTO 만들때 규칙
 	//1. 모든 멤버변수의 접근지정자는 private
@@ -8,8 +10,15 @@ public class RegionDTO {
 	//4. 멤버변수의 이름과 DATATYPE은 DB의 Table의 컬럼명과 DATATYPE 일치
 	private Long region_id;
 	private String region_name;
+	private List<RegionFileDTO> regionFileDTOs;
 	
 	
+	public List<RegionFileDTO> getRegionFileDTOs() {
+		return regionFileDTOs;
+	}
+	public void setRegionFileDTOs(List<RegionFileDTO> regionFileDTOs) {
+		this.regionFileDTOs = regionFileDTOs;
+	}
 	public Long getRegion_id() {
 		return region_id;
 	}

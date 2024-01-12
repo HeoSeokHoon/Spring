@@ -19,10 +19,16 @@
     		<c:if test="${not empty dto}">
     			<h3>${dto.region_id}</h3>
     			<div>${dto.region_name}</div>
-				<button id="up" data-region-id="${dto.region_id}">Update</button>
-    			<button id="del">Delete</button>
+    			<div>
+    				<h2>FILE</h2>
+    				<c:forEach items="${dto.regionFileDTOs}" var="f">
+    				<a href="/resources/upload/regions/${f.fileName}">${f.oriName}</a><br>				
+    				</c:forEach>
+    			</div>
+				<button class="btn btn-primary" id="up" data-region-id="${dto.region_id}">Update</button>
+    			<button class="btn btn-primary" id="del">Delete</button>
     			<form id="frm" action="./delete" method="post">
-    				<input type="hiden" name="region_id" value="${dto.region_id}">
+    				<input type="hidden" name="region_id" value="${dto.region_id}">
     			</form>
     		</c:if>
     		

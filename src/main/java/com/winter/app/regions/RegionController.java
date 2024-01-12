@@ -62,7 +62,7 @@ public class RegionController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(RegionDTO rD, MultipartFile photo, Model model) throws Exception {
+	public String add(RegionDTO rD, MultipartFile[] photo, Model model) throws Exception {
 		int result = this.regionService.add(rD, photo);
 		
 		String msg="등록 실패";

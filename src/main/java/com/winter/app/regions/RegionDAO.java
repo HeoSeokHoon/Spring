@@ -24,6 +24,9 @@ public class RegionDAO {
 	public int delete(RegionDTO rD) throws Exception {
 		return sqlSession.delete(namespace+"delete", rD);
 	}
+	public List<RegionFileDTO> getListFiles(RegionDTO rD) throws Exception{
+		return sqlSession.selectList(namespace+"getListFiles", rD);
+	}
 	
 	//Update
 	public int update(RegionDTO rD) throws Exception {
@@ -43,6 +46,7 @@ public class RegionDAO {
 	public RegionDTO getDetail(RegionDTO rD)throws Exception {
 		return sqlSession.selectOne(namespace+"getDetail", rD);
 	}
+	
 	
 	//List
 	public List<RegionDTO> getList(Pager pager) throws Exception {
